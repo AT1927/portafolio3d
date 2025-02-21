@@ -14,7 +14,7 @@ export default function Scene() {
       <pointLight position={[10, 10, 10]} />
 
       <mesh ref={meshRef} rotation={[0.5, 0.5, 0]}>
-        <boxGeometry args={[1, 1, 1]} />
+        <coneGeometry args={[1, 2, 4]} />
         <meshStandardMaterial color="green" wireframe={true} />
       </mesh>
 

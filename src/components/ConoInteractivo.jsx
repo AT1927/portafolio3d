@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 
-export default function CuboInteractivo() {
+export default function ConoInteractivo() {
   const cubeRef = useRef();
   const [color, setColor] = useState("blue");
 
@@ -26,7 +26,7 @@ export default function CuboInteractivo() {
       onClick={handleCubeClick}
       name="cubo"
     >
-      <cylinderGeometry args={[0.5, 0.5, 2, 32]} />
+      <coneGeometry args={[1, 2, 4]} />
       <meshStandardMaterial color={color} />
     </mesh>
   );
