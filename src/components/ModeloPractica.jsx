@@ -7,7 +7,7 @@ export default function ModeloPractica() {
   const gltf = useLoader(GLTFLoader, "/assets/model.glb");
   const texture = useLoader(TextureLoader, "/assets/baked.jpg");
   const screenTexture = useLoader(TextureLoader, "/assets/publicidad2.jpg");
-  const pictureTexture = useLoader(TextureLoader, "/assets/publicidad2.jpg"); // Cargar la textura de la imagen personalizada
+  const pictureTexture = useLoader(TextureLoader, "/assets/publicidad2.jpg");
   const chairAudioRef = useRef(new Audio("/assets/chair-move.mp3"));
   const audioRef = useRef(new Audio("/assets/ambiente2.mp3")); 
   const penguinAudioRef = useRef(new Audio("/assets/penguin.mp3")); 
@@ -135,7 +135,7 @@ export default function ModeloPractica() {
   const handleChairClick = () => {
     if (chairRef.current) {
       setTargetChairPosition(new Vector3(
-        chairRef.current.position.x + 1.5,
+        chairRef.current.position.x + 1.0,
         chairRef.current.position.y,
         chairRef.current.position.z
       ));
