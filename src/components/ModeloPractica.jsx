@@ -22,6 +22,7 @@ export default function ModeloPractica() {
   const penguinRef = useRef();
   const shelvingRef = useRef(); // Referencia para el elemento "shelving"
   const pictureRef = useRef(); // Referencia para el elemento "picture"
+  const blackboardRef = useRef(); // Referencia para el elemento "blackboard"
   const [targetChairPosition, setTargetChairPosition] = useState(null);
   const [chairInitialPos, setChairInitialPos] = useState(null);
 
@@ -32,7 +33,7 @@ export default function ModeloPractica() {
     audioRef.current.loop = true;
 
     // 📌 Crear video y cargarlo como textura
-    videoRef.current.src = "/assets/video.mp4"; // Cambia esto por un video real
+    videoRef.current.src = "/assets/video.mp4"; // Video personal.
     videoRef.current.crossOrigin = "anonymous";
     videoRef.current.loop = true;
     videoRef.current.muted = true;
@@ -65,6 +66,7 @@ export default function ModeloPractica() {
     penguinRef.current = gltf.scene.getObjectByName("penguin");
     shelvingRef.current = gltf.scene.getObjectByName("shelving"); // Obtener referencia del elemento "shelving"
     pictureRef.current = gltf.scene.getObjectByName("picture"); // Obtener referencia del elemento "picture"
+    blackboardRef.current = gltf.scene.getObjectByName("blackboard"); // Obtener referencia del elemento "blackboard"
 
     if (chairRef.current) {
       setChairInitialPos(chairRef.current.position.clone());
@@ -176,6 +178,16 @@ export default function ModeloPractica() {
     }
   };
 
+  const handleBlackboardClick = () => {
+    if (videoRef.current.paused) {
+      videoRef.current.play();
+      console.log("▶️ Video reproduciéndose");
+    } else {
+      videoRef.current.pause();
+      console.log("⏸️ Video pausado");
+    }
+  };
+
   const handleObjectClick = (event) => {
     event.stopPropagation();
     const clickedObject = event.object.name;
@@ -200,6 +212,9 @@ export default function ModeloPractica() {
     } else if (clickedObject === "shelving") {
       console.log("📚 Click en estantería");
       handleShelvingClick();
+    } else if (clickedObject === "blackboard") {
+      console.log("🖥️ Click en pizarra");
+      handleBlackboardClick();
     }
   };
 
