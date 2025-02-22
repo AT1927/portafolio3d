@@ -7,7 +7,8 @@ export default function ModeloPractica() {
   const gltf = useLoader(GLTFLoader, "/assets/model.glb");
   const texture = useLoader(TextureLoader, "/assets/baked.jpg");
   const screenTexture = useLoader(TextureLoader, "/assets/publicidad2.jpg");
-  const pictureTexture = useLoader(TextureLoader, "/assets/publicidad2.jpg");
+  const pictureTexture = useLoader(TextureLoader, "/assets/volcan.jpg");
+  const roomBaseTexture = useLoader(TextureLoader, "/assets/fondo.jpg");
   const chairAudioRef = useRef(new Audio("/assets/chair-move.mp3"));
   const audioRef = useRef(new Audio("/assets/ambiente2.mp3")); 
   const penguinAudioRef = useRef(new Audio("/assets/penguin.mp3")); 
@@ -23,6 +24,7 @@ export default function ModeloPractica() {
   const shelvingRef = useRef(); // Referencia para el elemento "shelving"
   const pictureRef = useRef(); // Referencia para el elemento "picture"
   const blackboardRef = useRef(); // Referencia para el elemento "blackboard"
+  const roomBaseRef = useRef(); // Referencia para el elemento "room-base"
   const [targetChairPosition, setTargetChairPosition] = useState(null);
   const [chairInitialPos, setChairInitialPos] = useState(null);
 
@@ -52,6 +54,9 @@ export default function ModeloPractica() {
         } else if (child.name === "picture") {
           child.material = child.material.clone();
           child.material.map = pictureTexture; // Asignar la textura de la imagen personalizada
+        } else if (child.name === "room-base") {
+          child.material = child.material.clone();
+          child.material.map = roomBaseTexture; // Asignar la textura de la imagen personalizada
         } else {
           child.material.map = texture;
         }
@@ -67,6 +72,7 @@ export default function ModeloPractica() {
     shelvingRef.current = gltf.scene.getObjectByName("shelving"); // Obtener referencia del elemento "shelving"
     pictureRef.current = gltf.scene.getObjectByName("picture"); // Obtener referencia del elemento "picture"
     blackboardRef.current = gltf.scene.getObjectByName("blackboard"); // Obtener referencia del elemento "blackboard"
+    roomBaseRef.current = gltf.scene.getObjectByName("room-base"); // Obtener referencia del elemento "room-base"
 
     if (chairRef.current) {
       setChairInitialPos(chairRef.current.position.clone());
